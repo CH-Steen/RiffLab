@@ -1,0 +1,211 @@
+<UserControl x:Class="GuitarPracticeStudio.App.Views.ExercisesView"
+              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+              mc:Ignorable="d"
+             d:DesignHeight="700"
+             d:DesignWidth="900"
+             Background="#0E1220">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
+    </UserControl.Resources>
+
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0"
+                CornerRadius="18"
+                Background="#111827"
+                BorderBrush="#24314B"
+                BorderThickness="1"
+                Padding="18"
+                Margin="0,0,0,18">
+            <TextBlock Text="Exercises" Foreground="#F3F8FF" FontSize="28" FontWeight="SemiBold"/>
+        </Border>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0"
+                    CornerRadius="20"
+                    Background="#101A2D"
+                    BorderBrush="#26395F"
+                    BorderThickness="1"
+                    Padding="18"
+                    Margin="0,0,0,18">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Margin="0,0,12,0">
+                            <TextBlock Text="Search exercises" Foreground="#F3F8FF" FontSize="12" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                            <TextBox x:Name="SearchTextBox"
+                                     Height="38"
+                                     Background="#121A2E"
+                                     BorderBrush="#2B3B5D"
+                                     Foreground="#F3F8FF"
+                                     Text=""/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Margin="0,0,12,0">
+                            <TextBlock Text="Category" Foreground="#F3F8FF" FontSize="12" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                            <ComboBox x:Name="CategoryFilterComboBox"
+                                        Height="38"
+                                        Style="{StaticResource DarkComboBoxStyle}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2" Margin="0,0,12,0">
+                            <TextBlock Text="Difficulty" Foreground="#F3F8FF" FontSize="12" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                            <ComboBox x:Name="DifficultyFilterComboBox"
+                                        Height="38"
+                                        Style="{StaticResource DarkComboBoxStyle}"/>
+                        </StackPanel>
+
+                        <Button Grid.Column="3"
+                                Width="140"
+                                Height="38"
+                                VerticalAlignment="Bottom"
+                                Content="New custom"
+                                Background="#1B1C2C"
+                                BorderBrush="#9B7BFF"
+                                Foreground="#F3F8FF"
+                                Click="CreateCustomExerciseButton_Click"/>
+                    </Grid>
+
+                    <Grid Grid.Row="1" Margin="0,18,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Margin="0,0,12,0">
+                            <TextBlock Text="Exercise name" Foreground="#F3F8FF" FontSize="12" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                            <TextBox x:Name="ExerciseNameTextBox"
+                                     Height="38"
+                                     Background="#121A2E"
+                                     BorderBrush="#2B3B5D"
+                                     Foreground="#F3F8FF"
+                                     Text=""/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Margin="0,0,12,0">
+                            <TextBlock Text="Exercise category" Foreground="#F3F8FF" FontSize="12" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                            <ComboBox x:Name="ExerciseCategoryComboBox"
+                                        Height="38"
+                                        Style="{StaticResource DarkComboBoxStyle}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2" Margin="0,0,12,0">
+                            <TextBlock Text="Difficulty" Foreground="#F3F8FF" FontSize="12" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                            <ComboBox x:Name="ExerciseDifficultyComboBox"
+                                        Height="38"
+                                        Style="{StaticResource DarkComboBoxStyle}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Bottom">
+                            <Button Width="110"
+                                    Height="38"
+                                    Margin="0,0,8,0"
+                                    Content="Save"
+                                    Background="#1C2E44"
+                                    Foreground="#F3F8FF"
+                                    BorderBrush="#46E5FF"
+                                    Click="SaveCustomExerciseButton_Click"/>
+                            <Button Width="110"
+                                    Height="38"
+                                    Content="Cancel"
+                                    Background="#1A233B"
+                                    Foreground="#F3F8FF"
+                                    BorderBrush="#2B3B5D"
+                                    Click="CancelCustomExerciseButton_Click"/>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <Border Grid.Row="1"
+                    CornerRadius="20"
+                    Background="#101A2D"
+                    BorderBrush="#26395F"
+                    BorderThickness="1"
+                    Padding="18">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ItemsControl x:Name="ExercisesList">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border CornerRadius="16" Background="#121A2E" BorderBrush="#2B3B5D" BorderThickness="1" Padding="16" Margin="0,0,0,12">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding Name}" Foreground="#F3F8FF" FontSize="16" FontWeight="SemiBold"/>
+                                            <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
+                                                <TextBlock Text="{Binding Category}" Foreground="#46E5FF" FontSize="12" Margin="0,0,12,0"/>
+                                                <TextBlock Text="{Binding Difficulty}" Foreground="#B79CFF" FontSize="12"/>
+                                            </StackPanel>
+                                            <TextBlock Text="{Binding Description}" Foreground="#A8B8D6" FontSize="13" TextWrapping="Wrap" Margin="0,8,0,0"/>
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                                            <Button Width="90"
+                                                    Height="34"
+                                                    Margin="0,0,8,0"
+                                                    Content="Practice"
+                                                    Background="#1C2E44"
+                                                    Foreground="#F3F8FF"
+                                                    BorderBrush="#46E5FF"
+                                                    Tag="{Binding}"
+                                                    Click="PracticeExerciseButton_Click"/>
+                                            <Button Width="90"
+                                                    Height="34"
+                                                    Margin="0,0,8,0"
+                                                    Content="Edit"
+                                                    Background="#1A233B"
+                                                    Foreground="#F3F8FF"
+                                                    BorderBrush="#2B3B5D"
+                                                    Tag="{Binding}"
+                                                    Click="EditExerciseButton_Click"
+                                                    Visibility="{Binding IsCustom, Converter={StaticResource BoolToVisibility}}"/>
+                                            <Button Width="90"
+                                                    Height="34"
+                                                    Content="Delete"
+                                                    Background="#1D1B2A"
+                                                    Foreground="#F3F8FF"
+                                                    BorderBrush="#9B7BFF"
+                                                    Tag="{Binding}"
+                                                    Click="DeleteExerciseButton_Click"
+                                                    Visibility="{Binding IsCustom, Converter={StaticResource BoolToVisibility}}"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,357 @@
+<UserControl x:Class="GuitarPracticeStudio.App.Views.ScalesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controls="clr-namespace:GuitarPracticeStudio.App.Controls"
+             mc:Ignorable="d"
+             d:DesignHeight="700"
+             d:DesignWidth="900"
+             Background="#0E1220">
+
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0"
+                CornerRadius="20"
+                Background="#101A2D"
+                BorderBrush="#26395F"
+                BorderThickness="1"
+                Padding="12"
+                Margin="0,0,0,12">
+            <StackPanel>
+                <TextBlock Text="Guitar Scales" Foreground="#F3F8FF" FontSize="22" FontWeight="SemiBold" Margin="0,0,0,10"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,12,0">
+                        <TextBlock Text="Root" Foreground="#DDEBFF" FontSize="12" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                        <ComboBox x:Name="RootNoteComboBox"
+                                  Width="120"
+                                  Height="32"
+                                  Style="{StaticResource DarkComboBoxStyle}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,12,0">
+                        <TextBlock Text="Scale" Foreground="#DDEBFF" FontSize="12" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                        <ComboBox x:Name="ScaleComboBox"
+                                  Width="180"
+                                  Height="32"
+                                  Style="{StaticResource DarkComboBoxStyle}"/>
+                    </StackPanel>
+
+                    <Button x:Name="ScalesMetronomePlayButton"
+                            Grid.Column="2"
+                            Width="88"
+                            Height="32"
+                            Content="Play"
+                            Background="#1C2E44"
+                            Foreground="#F3F8FF"
+                            BorderBrush="#46E5FF"
+                            Margin="0,0,12,0"
+                            Click="ScalesMetronomePlayButton_Click"/>
+
+                    <Grid Grid.Column="3" HorizontalAlignment="Right" Width="420">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="180"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="BPM" Foreground="#DDEBFF" FontSize="12" VerticalAlignment="Center" Margin="0,0,8,6"/>
+                        <TextBox x:Name="ScalesMetronomeBpmTextBox"
+                                 Grid.Row="0" Grid.Column="1"
+                                 Width="56"
+                                 Height="28"
+                                 Background="#0F1523"
+                                 BorderBrush="#2B3B5D"
+                                 Foreground="#F3F8FF"
+                                 HorizontalContentAlignment="Center"
+                                 VerticalContentAlignment="Center"
+                                 Margin="0,0,8,6"
+                                 TextChanged="ScalesMetronomeBpmTextBox_TextChanged"/>
+                        <Slider x:Name="ScalesMetronomeBpmSlider"
+                                Grid.Row="0" Grid.Column="2"
+                                Width="180"
+                                Minimum="40"
+                                Maximum="240"
+                                Value="120"
+                                TickFrequency="5"
+                                IsSnapToTickEnabled="True"
+                                Margin="0,0,0,6"
+                                ValueChanged="ScalesMetronomeBpmSlider_ValueChanged"/>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Volume" Foreground="#DDEBFF" FontSize="12" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                        <Slider x:Name="ScalesMetronomeVolumeSlider"
+                                Grid.Row="1" Grid.Column="1"
+                                Grid.ColumnSpan="2"
+                                Width="180"
+                                Minimum="0"
+                                Maximum="100"
+                                Value="60"
+                                TickFrequency="5"
+                                IsSnapToTickEnabled="True"
+                                ValueChanged="ScalesMetronomeVolumeSlider_ValueChanged"/>
+                    </Grid>
+                </Grid>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="1"
+                CornerRadius="20"
+                Background="#101A2D"
+                BorderBrush="#26395F"
+                BorderThickness="1"
+                Padding="12">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock x:Name="ScaleSummaryText"
+                            Grid.Row="0"
+                            Foreground="#F3F8FF"
+                            FontSize="15"
+                            FontWeight="SemiBold"
+                            Margin="0,0,0,12"/>
+
+                <controls:GuitarFretboard x:Name="ScaleFretboard" Grid.Row="1" Height="330" />
+            </Grid>
+        </Border>
+
+        <Border x:Name="BackingTrackDropBorder"
+                Grid.Row="2"
+                CornerRadius="20"
+                Background="#101A2D"
+                BorderBrush="#26395F"
+                BorderThickness="1"
+                Padding="12"
+                Margin="0,12,0,0"
+                AllowDrop="True"
+                DragEnter="BackingTrackDropBorder_DragEnter"
+                DragLeave="BackingTrackDropBorder_DragLeave"
+                Drop="BackingTrackDropBorder_Drop"
+                PreviewKeyDown="ScalesView_PreviewKeyDown">
+            <StackPanel>
+                <TextBlock Text="Backing Track" Foreground="#46E5FF" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,10"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="OpenBackingTrackButton"
+                            Grid.Column="0"
+                            Width="88"
+                            Height="32"
+                            Content="Open"
+                            Background="#1C2E44"
+                            Foreground="#F3F8FF"
+                            BorderBrush="#46E5FF"
+                            Margin="0,0,8,0"
+                            Click="OpenBackingTrackButton_Click"/>
+
+                    <TextBlock x:Name="LoadedBackingTrackTextBlock"
+                               Grid.Column="1"
+                               Text="No track loaded"
+                               Foreground="#DDEBFF"
+                               FontSize="12"
+                               VerticalAlignment="Center"
+                               Margin="0,0,12,0"
+                               TextTrimming="CharacterEllipsis"/>
+
+                    <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Text="Vol" Foreground="#DDEBFF" FontSize="12" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                        <Slider x:Name="BackingTrackVolumeSlider"
+                                Width="110"
+                                Minimum="0"
+                                Maximum="100"
+                                Value="70"
+                                TickFrequency="5"
+                                IsSnapToTickEnabled="True"
+                                ValueChanged="BackingTrackVolumeSlider_ValueChanged"/>
+                    </StackPanel>
+                </Grid>
+
+                <Grid Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,12,0">
+                        <TextBlock Text="Track BPM" Foreground="#DDEBFF" FontSize="12" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                        <TextBox x:Name="BackingTrackBpmTextBox"
+                                 Width="56"
+                                 Height="28"
+                                 Background="#0F1523"
+                                 BorderBrush="#2B3B5D"
+                                 Foreground="#F3F8FF"
+                                 HorizontalContentAlignment="Center"
+                                 VerticalContentAlignment="Center"
+                                 Text="120"
+                                 TextChanged="BackingTrackBpmTextBox_TextChanged"/>
+                    </StackPanel>
+                </Grid>
+
+                <Grid Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="BackingTrackRestartButton"
+                            Grid.Column="0"
+                            Width="36"
+                            Height="32"
+                            Background="#1C2E44"
+                            Foreground="#F3F8FF"
+                            BorderBrush="#46E5FF"
+                            Margin="0,0,8,0"
+                            Click="BackingTrackRestartButton_Click">
+                        <Viewbox Width="14" Height="14" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Path Data="M20,5 L8,12 L20,19 Z M8,5 L4,12 L8,19 Z" Fill="#F3F8FF" Stretch="Fill"/>
+                        </Viewbox>
+                    </Button>
+
+                    <Button x:Name="BackingTrackRewindButton"
+                            Grid.Column="1"
+                            Width="36"
+                            Height="32"
+                            Background="#1C2E44"
+                            Foreground="#F3F8FF"
+                            BorderBrush="#46E5FF"
+                            Margin="0,0,8,0"
+                            Click="BackingTrackRewindButton_Click">
+                        <Viewbox Width="14" Height="14" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Path Data="M20,5 L8,12 L20,19 Z" Fill="#F3F8FF" Stretch="Fill"/>
+                        </Viewbox>
+                    </Button>
+
+                    <Button x:Name="BackingTrackToggleButton"
+                            Grid.Column="2"
+                            Width="96"
+                            Height="32"
+                            Content="Play"
+                            Background="#1C2E44"
+                            Foreground="#F3F8FF"
+                            BorderBrush="#46E5FF"
+                            Margin="0,0,8,0"
+                            Click="BackingTrackToggleButton_Click"/>
+
+                    <Button x:Name="BackingTrackForwardButton"
+                            Grid.Column="3"
+                            Width="36"
+                            Height="32"
+                            Background="#1C2E44"
+                            Foreground="#F3F8FF"
+                            BorderBrush="#46E5FF"
+                            Margin="0,0,8,0"
+                            Click="BackingTrackForwardButton_Click">
+                        <Viewbox Width="14" Height="14" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Path Data="M4,5 L16,12 L4,19 Z" Fill="#F3F8FF" Stretch="Fill"/>
+                        </Viewbox>
+                    </Button>
+
+                    <Button x:Name="BackingTrackEndButton"
+                            Grid.Column="4"
+                            Width="36"
+                            Height="32"
+                            Background="#1C2E44"
+                            Foreground="#F3F8FF"
+                            BorderBrush="#46E5FF"
+                            Click="BackingTrackEndButton_Click">
+                        <Viewbox Width="14" Height="14" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Path Data="M4,5 L16,12 L4,19 Z M16,5 L20,12 L16,19 Z" Fill="#F3F8FF" Stretch="Fill"/>
+                        </Viewbox>
+                    </Button>
+                </Grid>
+
+                <Border Margin="0,12,0,0"
+                        Height="175"
+                        CornerRadius="10"
+                        Background="#050B16"
+                        BorderBrush="#1E355D"
+                        BorderThickness="1"
+                        MouseLeftButtonDown="BackingTrackWaveform_MouseLeftButtonDown"
+                        MouseMove="BackingTrackWaveform_MouseMove"
+                        MouseLeave="BackingTrackWaveform_MouseLeave"
+                        PreviewMouseLeftButtonUp="BackingTrackWaveform_PreviewMouseLeftButtonUp">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Canvas x:Name="BackingTrackTimelineCanvas"
+                                Grid.Row="0"
+                                Height="24"
+                                Background="#080F1D"
+                                MouseLeftButtonDown="BackingTrackTimelineCanvas_MouseLeftButtonDown"
+                                MouseMove="BackingTrackTimelineCanvas_MouseMove"
+                                MouseLeave="BackingTrackTimelineCanvas_MouseLeave"
+                                PreviewMouseLeftButtonUp="BackingTrackTimelineCanvas_PreviewMouseLeftButtonUp"
+                                SizeChanged="BackingTrackTimelineCanvas_SizeChanged">
+                            <Rectangle x:Name="BackingTrackTimelineLoopSelection"
+                                       Fill="#3038FFAA"
+                                       Stroke="#7AF7FF"
+                                       StrokeThickness="1"
+                                       Visibility="Collapsed"/>
+                        </Canvas>
+
+                        <Canvas x:Name="BackingTrackWaveformCanvas"
+                                Grid.Row="1"
+                                Background="#050B16"
+                                SizeChanged="BackingTrackWaveformCanvas_SizeChanged" />
+
+                        <Canvas x:Name="BackingTrackWaveformOverlay"
+                                Grid.Row="1"
+                                IsHitTestVisible="False">
+                            <Rectangle x:Name="BackingTrackLoopSelection"
+                                       Fill="#3038FFAA"
+                                       Stroke="#7AF7FF"
+                                       StrokeThickness="1"
+                                       Visibility="Collapsed" />
+                            <Line x:Name="BackingTrackWaveformCursor"
+                                  Stroke="#7AF7FF"
+                                  StrokeThickness="2"
+                                  Visibility="Collapsed"
+                                  StrokeDashArray="2 4" />
+                        </Canvas>
+                    </Grid>
+                </Border>
+
+                <Grid Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock x:Name="BackingTrackTimeTextBlock"
+                               Grid.Column="0"
+                               Text="00:00 / 00:00"
+                               Foreground="#DDEBFF"
+                               FontSize="12"
+                               VerticalAlignment="Center"/>
+                </Grid>
+            </StackPanel>
+        </Border>
+
+    </Grid>
+</UserControl>
