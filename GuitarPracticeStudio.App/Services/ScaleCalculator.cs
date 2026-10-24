@@ -1,4 +1,4 @@
-namespace GuitarPracticeStudio.App.Services
+namespace RiffLab.App.Services
 {
     public static class ScaleCalculator
     {

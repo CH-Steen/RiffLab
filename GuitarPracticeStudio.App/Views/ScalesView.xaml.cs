@@ -12,12 +12,12 @@ using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using NAudio.Wave.SampleProviders;
-using GuitarPracticeStudio.App.Controls;
-using GuitarPracticeStudio.App.Models;
-using GuitarPracticeStudio.App.Services;
+using RiffLab.App.Controls;
+using RiffLab.App.Models;
+using RiffLab.App.Services;
 using Microsoft.Win32;
 
-namespace GuitarPracticeStudio.App.Views
+namespace RiffLab.App.Views
 {
     public partial class ScalesView : UserControl
     {

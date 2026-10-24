@@ -1,8 +1,8 @@
 using System.IO;
 using System.Text.Json;
-using GuitarPracticeStudio.App.Models;
+using RiffLab.App.Models;
 
-namespace GuitarPracticeStudio.App.Services
+namespace RiffLab.App.Services
 {
     public class PracticeSessionService
     {

@@ -8,7 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Effects;
 using System.Windows.Shapes;
 
-namespace GuitarPracticeStudio.App.Controls
+namespace RiffLab.App.Controls
 {
     public partial class GuitarFretboard : UserControl
     {

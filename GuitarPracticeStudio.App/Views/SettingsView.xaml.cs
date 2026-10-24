@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
-using GuitarPracticeStudio.App;
-using GuitarPracticeStudio.App.Services;
+using RiffLab.App;
+using RiffLab.App.Services;
 
-namespace GuitarPracticeStudio.App.Views
+namespace RiffLab.App.Views
 {
     public partial class SettingsView : UserControl
     {

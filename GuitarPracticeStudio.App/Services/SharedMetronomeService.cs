@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using System.Windows.Threading;
 
-namespace GuitarPracticeStudio.App.Services
+namespace RiffLab.App.Services
 {
     public static class SharedMetronomeService
     {

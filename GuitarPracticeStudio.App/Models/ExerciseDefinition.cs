@@ -1,4 +1,4 @@
-namespace GuitarPracticeStudio.App.Models
+namespace RiffLab.App.Models
 {
     public class ExerciseDefinition
     {

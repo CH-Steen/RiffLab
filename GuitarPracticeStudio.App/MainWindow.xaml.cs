@@ -1,10 +1,10 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using GuitarPracticeStudio.App.Services;
-using GuitarPracticeStudio.App.Views;
+using RiffLab.App.Services;
+using RiffLab.App.Views;
 
-namespace GuitarPracticeStudio.App
+namespace RiffLab.App
 {
     public partial class MainWindow : Window
     {

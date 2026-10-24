@@ -7,9 +7,9 @@ using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using GuitarPracticeStudio.App.Services;
+using RiffLab.App.Services;
 
-namespace GuitarPracticeStudio.App
+namespace RiffLab.App
 {
     public enum AppTheme
     {

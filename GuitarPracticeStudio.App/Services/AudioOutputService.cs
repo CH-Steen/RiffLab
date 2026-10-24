@@ -6,7 +6,7 @@ using System.Linq;
 using NAudio.CoreAudioApi;
 using NAudio.Wave;
 
-namespace GuitarPracticeStudio.App.Services
+namespace RiffLab.App.Services
 {
     public sealed class AudioOutputService : IDisposable
     {

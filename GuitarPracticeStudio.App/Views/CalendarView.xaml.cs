@@ -1,10 +1,10 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using GuitarPracticeStudio.App.Models;
-using GuitarPracticeStudio.App.Services;
+using RiffLab.App.Models;
+using RiffLab.App.Services;
 
-namespace GuitarPracticeStudio.App.Views
+namespace RiffLab.App.Views
 {
     public partial class CalendarView : UserControl
     {

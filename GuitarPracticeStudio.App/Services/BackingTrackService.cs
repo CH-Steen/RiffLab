@@ -4,7 +4,7 @@ using System.IO;
 using NAudio.CoreAudioApi;
 using NAudio.Wave;
 
-namespace GuitarPracticeStudio.App.Services
+namespace RiffLab.App.Services
 {
     public static class BackingTrackService
     {
